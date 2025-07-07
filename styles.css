@@ -1,0 +1,494 @@
+/* Twitter AI Reply Assistant - BlitzX Style */
+
+/* Floating Bubble Container */
+.ai-floating-bubble {
+  position: absolute !important;
+  top: 8px !important;
+  right: 8px !important;
+  z-index: 1001 !important;
+  background: rgba(0, 0, 0, 0.8) !important;
+  border: 1px solid rgba(255, 255, 255, 0.3) !important;
+  border-radius: 12px !important;
+  padding: 4px !important;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.4) !important;
+  backdrop-filter: blur(8px) !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  transition: all 0.2s ease !important;
+}
+
+.ai-floating-bubble:hover {
+  transform: scale(1.02) !important;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5) !important;
+}
+
+/* Mobile positioning for floating bubble */
+@media (max-width: 768px) {
+  .ai-floating-bubble {
+    top: 4px !important;
+    right: 4px !important;
+    padding: 3px !important;
+  }
+}
+
+/* CSS Reset for AI Buttons - Prevent inheritance issues */
+.ai-response-buttons,
+.ai-response-buttons *,
+.ai-option-btn,
+.ai-option-btn * {
+  all: unset !important;
+  box-sizing: border-box !important;
+}
+
+/* Restore essential display properties */
+.ai-response-buttons {
+  display: flex !important;
+  flex-direction: row !important;
+  justify-content: center !important;
+  align-items: center !important;
+}
+
+.ai-option-btn {
+  display: flex !important;
+  cursor: pointer !important;
+  flex: 0 0 auto !important;
+  width: 20px !important;
+  min-width: 20px !important;
+  max-width: 20px !important;
+}
+
+.ai-option-btn .emoji {
+  display: inline !important;
+}
+
+.ai-option-btn .text {
+  display: none !important;
+}
+
+/* AI Reply Button Styling (BlitzX Style) */
+.blitz-ai-reply-btn,
+.blitz-ai-compose-btn {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 8px 12px;
+  background: transparent;
+  border: none;
+  border-radius: 20px;
+  color: rgb(83, 100, 113);
+  font-size: 13px;
+  font-weight: 400;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  min-height: 32px;
+  position: relative;
+  overflow: hidden;
+}
+
+.blitz-ai-reply-btn:hover,
+.blitz-ai-compose-btn:hover {
+  background-color: rgba(29, 155, 240, 0.1);
+  color: rgb(29, 155, 240);
+}
+
+.blitz-ai-reply-btn:active,
+.blitz-ai-compose-btn:active {
+  background-color: rgba(29, 155, 240, 0.2);
+  transform: scale(0.98);
+}
+
+.blitz-ai-reply-btn.loading,
+.blitz-ai-compose-btn.loading {
+  color: rgb(29, 155, 240);
+  pointer-events: none;
+  opacity: 0.8;
+}
+
+.blitz-ai-reply-btn svg,
+.blitz-ai-compose-btn svg {
+  width: 16px;
+  height: 16px;
+  fill: currentColor;
+  flex-shrink: 0;
+}
+
+.blitz-ai-reply-btn span,
+.blitz-ai-compose-btn span {
+  font-size: 13px;
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  flex-shrink: 0;
+}
+
+/* Loading animation for the button */
+.blitz-ai-reply-btn.loading svg,
+.blitz-ai-compose-btn.loading svg {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* Dark theme support */
+@media (prefers-color-scheme: dark) {
+  .blitz-ai-reply-btn,
+  .blitz-ai-compose-btn {
+    color: rgb(113, 118, 123);
+  }
+  
+  .blitz-ai-reply-btn:hover,
+  .blitz-ai-compose-btn:hover {
+    background-color: rgba(29, 155, 240, 0.1);
+    color: rgb(29, 155, 240);
+  }
+}
+
+/* Twitter Dark Theme Override */
+[data-theme="dark"] .blitz-ai-reply-btn,
+[data-theme="dark"] .blitz-ai-compose-btn,
+html[data-color-scheme="dark"] .blitz-ai-reply-btn,
+html[data-color-scheme="dark"] .blitz-ai-compose-btn {
+  color: rgb(113, 118, 123);
+}
+
+[data-theme="dark"] .blitz-ai-reply-btn:hover,
+[data-theme="dark"] .blitz-ai-compose-btn:hover,
+html[data-color-scheme="dark"] .blitz-ai-reply-btn:hover,
+html[data-color-scheme="dark"] .blitz-ai-compose-btn:hover {
+  background-color: rgba(29, 155, 240, 0.1);
+  color: rgb(29, 155, 240);
+}
+
+/* Responsive design for mobile */
+@media (max-width: 768px) {
+  .blitz-ai-reply-btn,
+  .blitz-ai-compose-btn {
+    padding: 6px 10px;
+    font-size: 12px;
+    min-height: 28px;
+  }
+  
+  .blitz-ai-reply-btn svg,
+  .blitz-ai-compose-btn svg {
+    width: 14px;
+    height: 14px;
+  }
+  
+  .blitz-ai-reply-btn span,
+  .blitz-ai-compose-btn span {
+    font-size: 12px;
+  }
+}
+
+/* Integration with Twitter's action buttons */
+.blitz-ai-reply-btn,
+.blitz-ai-compose-btn {
+  margin-left: 4px;
+}
+
+/* Ensure button doesn't interfere with Twitter's layout */
+[data-testid="tweet"] [role="group"] {
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+/* Smooth transitions for better UX */
+.blitz-ai-reply-btn *,
+.blitz-ai-compose-btn * {
+  transition: inherit;
+}
+
+/* Focus states for accessibility */
+.blitz-ai-reply-btn:focus,
+.blitz-ai-compose-btn:focus {
+  outline: 2px solid rgb(29, 155, 240);
+  outline-offset: 2px;
+}
+
+.blitz-ai-reply-btn:focus:not(:focus-visible),
+.blitz-ai-compose-btn:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .blitz-ai-reply-btn,
+  .blitz-ai-compose-btn {
+    border: 1px solid currentColor;
+  }
+  
+  .blitz-ai-reply-btn:hover,
+  .blitz-ai-compose-btn:hover {
+    background-color: rgb(29, 155, 240);
+    color: white;
+  }
+}
+
+/* Floating toolbar support for compose pages */
+#ai-floating-toolbar {
+  transition: all 0.3s ease;
+}
+
+#ai-floating-toolbar:hover {
+  transform: scale(1.05);
+}
+
+/* Dark theme support for floating toolbar */
+@media (prefers-color-scheme: dark) {
+  #ai-floating-toolbar {
+    background: rgba(21, 32, 43, 0.95) !important;
+    border-color: #38444d !important;
+  }
+}
+
+[data-theme="dark"] #ai-floating-toolbar,
+html[data-color-scheme="dark"] #ai-floating-toolbar {
+  background: rgba(21, 32, 43, 0.95) !important;
+  border-color: #38444d !important;
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .blitz-ai-reply-btn,
+  .blitz-ai-compose-btn,
+  .blitz-ai-reply-btn *,
+  .blitz-ai-compose-btn *,
+  .blitz-ai-reply-btn.loading svg,
+  .blitz-ai-compose-btn.loading svg,
+  #ai-floating-toolbar {
+    animation: none;
+    transition: none;
+    transform: none;
+  }
+} 
+
+/* AI Response Buttons Container - Floating Bubble Style */
+.ai-response-buttons {
+  display: flex !important;
+  flex-direction: row !important;
+  justify-content: center !important;
+  align-items: center !important;
+  gap: 2px;
+  margin: 0;
+  padding: 0;
+  background: transparent !important;
+  border: none !important;
+  border-radius: 0 !important;
+  position: relative;
+  z-index: 1001;
+  visibility: visible !important;
+  opacity: 1 !important;
+  width: auto;
+  max-width: none;
+  box-shadow: none !important;
+  outline: none !important;
+}
+
+
+
+/* Flex positioning for buttons - Floating Bubble */
+.ai-response-buttons .like-btn,
+.ai-response-buttons .support-btn,
+.ai-response-buttons .dislike-btn,
+.ai-response-buttons .suggestion-btn,
+.ai-response-buttons .question-btn {
+  flex: 0 0 auto;
+  width: 20px;
+  min-width: 20px;
+  max-width: 20px;
+}
+
+/* Individual AI Option Buttons - Floating Bubble Style */
+.ai-option-btn {
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  gap: 0px;
+  padding: 4px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.15) !important;
+  color: rgb(231, 233, 234) !important;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+  user-select: none;
+  min-height: 20px;
+  max-height: 20px;
+  width: 20px;
+  opacity: 1 !important;
+  visibility: visible !important;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  text-align: center;
+  flex: 0 0 auto;
+  box-sizing: border-box;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2) !important;
+  outline: none !important;
+  backdrop-filter: blur(4px);
+}
+
+/* Emoji styling - Floating Bubble */
+.ai-option-btn .emoji {
+  font-size: 12px;
+  line-height: 1;
+  flex-shrink: 0;
+  margin: 0;
+  filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.3));
+}
+
+/* Hide text since we're only showing emoji */
+.ai-option-btn .text {
+  display: none !important;
+}
+
+.ai-option-btn:hover {
+  background: rgba(255, 255, 255, 0.25) !important;
+  border-color: rgba(255, 255, 255, 0.5) !important;
+  transform: scale(1.1);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3) !important;
+}
+
+.ai-option-btn:active {
+  background: rgba(255, 255, 255, 0.35) !important;
+  opacity: 0.9;
+  transform: scale(0.95);
+}
+
+.ai-option-btn:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+  background: rgba(83, 100, 113, 0.2);
+  color: rgb(113, 118, 123);
+  border-color: rgba(83, 100, 113, 0.3);
+}
+
+/* Floating Bubble styling for all buttons */
+.ai-option-btn.like-btn,
+.ai-option-btn.support-btn,
+.ai-option-btn.dislike-btn,
+.ai-option-btn.suggestion-btn,
+.ai-option-btn.question-btn {
+  background: rgba(255, 255, 255, 0.15) !important;
+  color: rgb(231, 233, 234) !important;
+  border-color: rgba(255, 255, 255, 0.3) !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2) !important;
+  outline: none !important;
+  width: 20px !important;
+  min-width: 20px !important;
+  max-width: 20px !important;
+  backdrop-filter: blur(4px);
+}
+
+.ai-option-btn.like-btn:hover,
+.ai-option-btn.support-btn:hover,
+.ai-option-btn.dislike-btn:hover,
+.ai-option-btn.suggestion-btn:hover,
+.ai-option-btn.question-btn:hover {
+  background: rgba(255, 255, 255, 0.25) !important;
+  border-color: rgba(255, 255, 255, 0.5) !important;
+  transform: scale(1.1) !important;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3) !important;
+}
+
+/* Mobile responsive design for AI response buttons */
+@media (max-width: 768px) {
+  .ai-response-buttons {
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: center !important;
+    gap: 2px;
+    margin: 0;
+    padding: 0;
+    max-width: none;
+  }
+  
+  .ai-option-btn {
+    gap: 0px;
+    padding: 3px;
+    border-radius: 6px;
+    font-size: 10px;
+    min-height: 18px;
+    max-height: 18px;
+    width: 18px;
+  }
+  
+  .ai-option-btn .emoji {
+    font-size: 10px;
+  }
+}
+
+/* Small mobile screens - Compact floating bubble */
+@media (max-width: 480px) {
+  .ai-response-buttons {
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: center !important;
+    gap: 1px;
+    margin: 0;
+    padding: 0;
+    max-width: none;
+  }
+  
+  .ai-option-btn {
+    gap: 0px;
+    padding: 2px;
+    border-radius: 6px;
+    font-size: 9px;
+    min-height: 16px;
+    max-height: 16px;
+    width: 16px;
+  }
+  
+  .ai-option-btn .emoji {
+    font-size: 9px;
+  }
+}
+
+/* Notification animations */
+@keyframes slideIn {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideOut {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
+
+/* Dark mode support for floating bubble */
+@media (prefers-color-scheme: dark) {
+  .ai-response-buttons {
+    background: transparent;
+    border: none;
+  }
+  
+  .ai-option-btn {
+    background: rgba(0, 0, 0, 0.6) !important;
+    border-color: rgba(255, 255, 255, 0.2) !important;
+    color: rgb(231, 233, 234) !important;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4) !important;
+  }
+  
+  .ai-option-btn:hover {
+    background: rgba(255, 255, 255, 0.2) !important;
+    border-color: rgba(255, 255, 255, 0.4) !important;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5) !important;
+  }
+} 

@@ -1,0 +1,526 @@
+/* Popup styles untuk Twitter AI Reply Assistant */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+}
+
+.container {
+    width: 380px;
+    max-height: 600px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    overflow-y: auto;
+}
+
+.header {
+    background: linear-gradient(135deg, #1da1f2 0%, #0d8bd9 100%);
+    color: white;
+    padding: 20px;
+    text-align: center;
+    border-radius: 12px 12px 0 0;
+}
+
+.header h1 {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.subtitle {
+    font-size: 14px;
+    opacity: 0.9;
+}
+
+.status {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 15px 20px;
+    padding: 10px;
+    background: #f8f9fa;
+    border-radius: 8px;
+    font-size: 14px;
+}
+
+.status-indicator {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #ffc107;
+    animation: pulse 2s infinite;
+}
+
+.status-indicator.success {
+    background: #28a745;
+}
+
+.status-indicator.error {
+    background: #dc3545;
+}
+
+@keyframes pulse {
+    0% { opacity: 1; }
+    50% { opacity: 0.5; }
+    100% { opacity: 1; }
+}
+
+.section {
+    margin: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #e9ecef;
+}
+
+.section:last-of-type {
+    border-bottom: none;
+}
+
+.section h3 {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 15px;
+    color: #333;
+}
+
+.input-group {
+    position: relative;
+    margin-bottom: 15px;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 500;
+    color: #555;
+    font-size: 14px;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 12px 45px 12px 12px;
+    border: 2px solid #e9ecef;
+    border-radius: 8px;
+    font-size: 14px;
+    transition: border-color 0.3s ease;
+    background: white;
+}
+
+.input-group input:focus {
+    outline: none;
+    border-color: #1da1f2;
+    box-shadow: 0 0 0 3px rgba(29, 161, 242, 0.1);
+}
+
+.toggle-btn {
+    position: absolute;
+    right: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 4px;
+    transition: background-color 0.2s ease;
+}
+
+.toggle-btn:hover {
+    background-color: #f8f9fa;
+}
+
+.button-group {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.btn {
+    flex: 1;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #1da1f2 0%, #0d8bd9 100%);
+    color: white;
+}
+
+.btn-primary:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(29, 161, 242, 0.4);
+}
+
+.btn-secondary {
+    background: #6c757d;
+    color: white;
+}
+
+.btn-secondary:hover:not(:disabled) {
+    background: #545b62;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(108, 117, 125, 0.4);
+}
+
+.help-text {
+    font-size: 12px;
+    color: #6c757d;
+    line-height: 1.5;
+}
+
+.help-text a {
+    color: #1da1f2;
+    text-decoration: none;
+}
+
+.help-text a:hover {
+    text-decoration: underline;
+}
+
+.setting-item {
+    margin-bottom: 15px;
+}
+
+.setting-item label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    color: #555;
+    cursor: pointer;
+}
+
+.setting-item select {
+    width: 100%;
+    padding: 10px;
+    border: 2px solid #e9ecef;
+    border-radius: 8px;
+    font-size: 14px;
+    background: white;
+    margin-top: 5px;
+}
+
+.setting-item select:focus {
+    outline: none;
+    border-color: #1da1f2;
+    box-shadow: 0 0 0 3px rgba(29, 161, 242, 0.1);
+}
+
+.setting-item input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+    accent-color: #1da1f2;
+}
+
+.instructions {
+    list-style: none;
+    counter-reset: step-counter;
+}
+
+.instructions li {
+    counter-increment: step-counter;
+    margin-bottom: 10px;
+    padding-left: 30px;
+    position: relative;
+    font-size: 14px;
+    line-height: 1.5;
+    color: #555;
+}
+
+.instructions li::before {
+    content: counter(step-counter);
+    position: absolute;
+    left: 0;
+    top: 0;
+    background: #1da1f2;
+    color: white;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.footer {
+    text-align: center;
+    padding: 20px;
+    background: #f8f9fa;
+    border-radius: 0 0 12px 12px;
+    margin-top: 20px;
+}
+
+.footer p {
+    font-size: 12px;
+    color: #6c757d;
+    margin-bottom: 5px;
+}
+
+.version {
+    font-size: 10px;
+    color: #adb5bd;
+    font-weight: 500;
+}
+
+/* Loading states */
+.loading {
+    position: relative;
+}
+
+.loading::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: 12px;
+    transform: translateY(-50%);
+    width: 16px;
+    height: 16px;
+    border: 2px solid #e9ecef;
+    border-top: 2px solid #1da1f2;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: translateY(-50%) rotate(0deg); }
+    100% { transform: translateY(-50%) rotate(360deg); }
+}
+
+/* API Provider Selection Styles */
+.provider-select, .model-select {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #e9ecef;
+    border-radius: 8px;
+    font-size: 14px;
+    background: white;
+    cursor: pointer;
+    transition: border-color 0.3s ease;
+}
+
+.provider-select:focus, .model-select:focus {
+    outline: none;
+    border-color: #1da1f2;
+    box-shadow: 0 0 0 3px rgba(29, 161, 242, 0.1);
+}
+
+.provider-select option, .model-select option {
+    padding: 8px;
+    font-size: 14px;
+}
+
+/* API Configuration Containers */
+.api-config {
+    margin: 15px 0;
+    padding: 15px;
+    background: #f8f9fa;
+    border-radius: 8px;
+    border: 1px solid #e9ecef;
+    transition: all 0.3s ease;
+}
+
+.api-config.active {
+    background: #e3f2fd;
+    border-color: #1da1f2;
+}
+
+.api-config h4 {
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 10px;
+    color: #333;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+/* Toggle buttons for each API */
+.toggle-btn {
+    position: absolute;
+    right: 8px;
+    top: 28px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 4px;
+    transition: background-color 0.2s ease;
+    font-size: 16px;
+}
+
+/* Provider specific styling */
+.api-config[data-provider="gemini"] {
+    border-left: 4px solid #4285f4;
+}
+
+.api-config[data-provider="openai"] {
+    border-left: 4px solid #00a67e;
+}
+
+.api-config[data-provider="openai-free"] {
+    border-left: 4px solid #10a37f;
+}
+
+/* OpenAI Free specific styling */
+.free-openai-notice {
+    background: linear-gradient(135deg, #10a37f 0%, #1a7f64 100%);
+    color: white;
+    padding: 12px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.free-openai-notice h4 {
+    margin: 0 0 5px 0;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.free-openai-notice p {
+    margin: 0;
+    font-size: 12px;
+    opacity: 0.95;
+}
+
+.rate-limit-notice {
+    background: #fff3cd;
+    border: 1px solid #ffeaa7;
+    border-radius: 6px;
+    padding: 10px;
+    margin-top: 10px;
+}
+
+.rate-limit-notice .help-text {
+    margin: 0;
+    color: #856404;
+}
+
+/* Enhanced input styling for API keys */
+.api-config .input-group input {
+    padding-right: 45px;
+}
+
+/* Model selection styling */
+.model-select {
+    margin-top: 5px;
+}
+
+/* Status indicators for each API */
+.api-status {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    margin-top: 8px;
+    padding: 6px 10px;
+    border-radius: 6px;
+    background: #f8f9fa;
+}
+
+.api-status.success {
+    background: #d4edda;
+    color: #155724;
+}
+
+.api-status.error {
+    background: #f8d7da;
+    color: #721c24;
+}
+
+.api-status-indicator {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #6c757d;
+}
+
+.api-status.success .api-status-indicator {
+    background: #28a745;
+}
+
+.api-status.error .api-status-indicator {
+    background: #dc3545;
+}
+
+/* Azure OpenAI Ready Notice */
+.azure-ready-notice {
+    background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+    color: white;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+
+.azure-ready-notice h4 {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.azure-ready-notice p {
+    font-size: 13px;
+    margin: 4px 0;
+    opacity: 0.95;
+}
+
+.azure-info-notice {
+    background: #e8f5e8;
+    border: 1px solid #28a745;
+    border-radius: 8px;
+    padding: 12px;
+}
+
+.azure-info-notice .help-text {
+    color: #155724;
+    font-size: 13px;
+    margin: 0;
+}
+
+/* Azure Configuration Info */
+.azure-config-info {
+    background: linear-gradient(135deg, #17a2b8 0%, #138496 100%);
+    color: white;
+    padding: 12px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+
+.azure-config-info h4 {
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.azure-config-info p {
+    font-size: 12px;
+    margin: 3px 0;
+    opacity: 0.95;
+} 
