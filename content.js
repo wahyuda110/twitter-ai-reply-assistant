@@ -156,6 +156,7 @@ function createAIResponseButtons() {
   const container = document.createElement('div');
   container.className = 'ai-response-buttons';
   container.innerHTML = `
+<<<<<<< HEAD
     <button class="ai-option-btn like-btn" data-type="like" title="R3 format - casual, lowercase, supportive Web3/crypto style">
       <span class="emoji">👍</span>
     </button>
@@ -177,6 +178,23 @@ function createAIResponseButtons() {
     <button class="ai-option-btn series-btn" data-type="series" title="Turn into teaching content - strategy over spam">
       <span class="emoji">📝</span>
     </button>
+=======
+    <button class="ai-option-btn like-btn" data-type="like" title="Generate positive response">
+      <span class="emoji">👍</span>
+    </button>
+    <button class="ai-option-btn support-btn" data-type="support" title="Generate supportive response">
+      <span class="emoji">💪</span>
+    </button>
+    <button class="ai-option-btn dislike-btn" data-type="dislike" title="Generate disagreement response">
+      <span class="emoji">👎</span>
+    </button>
+    <button class="ai-option-btn suggestion-btn" data-type="suggestion" title="Generate suggestion response">
+      <span class="emoji">💡</span>
+    </button>
+    <button class="ai-option-btn question-btn" data-type="question" title="Generate question response">
+      <span class="emoji">❓</span>
+    </button>
+>>>>>>> be8621848e5e268a689a06f9820b568e5541bca3
   `;
   return container;
 }

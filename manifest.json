@@ -14,8 +14,12 @@
     "https://api.openai.com/*",
     "https://api.deepseek.com/*",
     "https://api.groq.com/*",
+<<<<<<< HEAD
     "https://api.together.xyz/*",
     "https://*.openai.azure.com/*"
+=======
+    "https://api.together.xyz/*"
+>>>>>>> be8621848e5e268a689a06f9820b568e5541bca3
   ],
   "background": {
     "service_worker": "background.js"

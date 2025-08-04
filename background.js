@@ -8,11 +8,15 @@ async function getStoredConfiguration() {
     geminiApiKey: '',
     openaiApiKey: '',
     openaiModel: 'gpt-4o-mini',
+<<<<<<< HEAD
     openaiFreePlatform: 'deepseek',
     azureApiKey: '',
     azureEndpoint: 'https://okegas.openai.azure.com/',
     azureDeploymentName: 'gpt-4.1-mini',
     azureApiVersion: '2024-02-15-preview'
+=======
+    openaiFreePlatform: 'deepseek'
+>>>>>>> be8621848e5e268a689a06f9820b568e5541bca3
   };
 }
 
@@ -265,6 +269,7 @@ async function callOpenAIAPI(prompt, apiKey, model = 'gpt-4o-mini', images = [])
   throw lastError;
 }
 
+<<<<<<< HEAD
 // Azure OpenAI API functions
 async function callAzureOpenAIAPI(prompt, apiKey, endpoint, deploymentName, apiVersion = '2024-02-15-preview', images = []) {
   // Clean endpoint URL (remove trailing slash if present)
@@ -362,6 +367,8 @@ async function callAzureOpenAIAPI(prompt, apiKey, endpoint, deploymentName, apiV
   throw lastError;
 }
 
+=======
+>>>>>>> be8621848e5e268a689a06f9820b568e5541bca3
 // OpenAI Free API functions
 async function callOpenAIFreeAPI(prompt, platform = 'deepseek') {
   let url, headers, requestBody;
@@ -472,6 +479,7 @@ async function callAIAPI(prompt, config, images = []) {
       console.warn('Free API doesn\'t support images. Processing text only.');
     }
     return await callOpenAIFreeAPI(prompt, config.openaiFreePlatform);
+<<<<<<< HEAD
   } else if (config.provider === 'azure-openai') {
     return await callAzureOpenAIAPI(
       prompt, 
@@ -481,6 +489,8 @@ async function callAIAPI(prompt, config, images = []) {
       config.azureApiVersion, 
       images
     );
+=======
+>>>>>>> be8621848e5e268a689a06f9820b568e5541bca3
   } else {
     return await callGeminiAPI(prompt, config.geminiApiKey, images);
   }
@@ -546,6 +556,7 @@ async function generateResponse(responseType, tweetText, images = []) {
     throw new Error('OpenAI API key not configured. Please set it in the extension popup.');
   }
   
+<<<<<<< HEAD
   if (config.provider === 'azure-openai') {
     if (!config.azureApiKey) {
       throw new Error('Azure OpenAI API key not configured. Please set it in the extension popup.');
@@ -558,6 +569,8 @@ async function generateResponse(responseType, tweetText, images = []) {
     }
   }
   
+=======
+>>>>>>> be8621848e5e268a689a06f9820b568e5541bca3
   // OpenAI Free doesn't need API key validation
 
   let prompt = '';
@@ -567,6 +580,7 @@ async function generateResponse(responseType, tweetText, images = []) {
     
     switch (responseType) {
       case 'like':
+<<<<<<< HEAD
         prompt += 'I want you to remember and understand a comment format called R3, which I\'ll often use to reply to posts on platforms like X (Twitter), especially in the context of Web3, crypto, and builder communities. R3 comments must be: Short (1–2 sentences), sometimes slightly longer, Casual style, all lowercase, Use abbreviations like u, ur, fr, tbh, btw, rn, gonna, etc ,  No emojis or excessive punctuation , No dashes, Positive, supportive, and relevant to the tweet\'s content, Sometimes open up a discussion, Sometimes mention the project discussed in the tweet, Sometimes include supportive words like "bro", "mate", or "sir" , IMPORTANT: Do NOT include "R3:" in your response, just provide the comment directly without any prefix.';
         break;
       case 'support':
@@ -589,10 +603,29 @@ async function generateResponse(responseType, tweetText, images = []) {
         break;
       default:
         prompt += 'Create a smart and relevant reply to the tweet above. Use natural English. IMPORTANT: Avoid using hyphens (-), apostrophes (\'s), hashtags (#), and links in your response. Use simple, clean formatting. Maximum 200 characters.';
+=======
+        prompt += 'Create a reply that shows agreement and support for the tweet above. Use natural and friendly English. Maximum 200 characters.';
+        break;
+      case 'support':
+        prompt += 'Create a reply that provides strong support and motivation for the tweet above. Use positive and encouraging English. Maximum 200 characters.';
+        break;
+      case 'dislike':
+        prompt += 'Create a reply that shows polite and constructive disagreement with the tweet above. Use respectful but firm English. Maximum 200 characters.';
+        break;
+      case 'suggestion':
+        prompt += 'Create a reply that provides constructive suggestions or advice for the tweet above. Use helpful and wise English. Maximum 200 characters.';
+        break;
+      case 'question':
+        prompt += 'Create a reply with relevant and engaging questions related to the tweet above. Use polite English that encourages discussion. Maximum 200 characters.';
+        break;
+      default:
+        prompt += 'Create a smart and relevant reply to the tweet above. Use natural English. Maximum 200 characters.';
+>>>>>>> be8621848e5e268a689a06f9820b568e5541bca3
     }
   } else {
     switch (responseType) {
       case 'like':
+<<<<<<< HEAD
         prompt += 'I want you to remember and understand a comment format called R3, which I\'ll often use to reply to posts on platforms like X (Twitter), especially in the context of Web3, crypto, and builder communities. R3 comments must be: Short (1–2 sentences), sometimes slightly longer, Casual style, all lowercase, Use abbreviations like u, ur, fr, tbh, btw, rn, gonna, etc ,  No emojis or excessive punctuation , No dashes, Positive, supportive, and relevant to the tweet\'s content, Sometimes open up a discussion, Sometimes mention the project discussed in the tweet, Sometimes include supportive words like "bro", "mate", or "sir" , IMPORTANT: Do NOT include "R3:" in your response, just provide the comment directly without any prefix.';
         break;
       case 'support':
@@ -615,6 +648,24 @@ async function generateResponse(responseType, tweetText, images = []) {
         break;
       default:
         prompt += 'Create an interesting and relevant tweet to share. Use natural English. IMPORTANT: Avoid using hyphens (-), apostrophes (\'s), hashtags (#), and links in your response. Use simple, clean formatting. Maximum 200 characters.';
+=======
+        prompt += 'Create a tweet that shows appreciation or positive things happening. Use cheerful and optimistic English. Maximum 200 characters.';
+        break;
+      case 'support':
+        prompt += 'Create a tweet that provides support or motivation to readers. Use inspiring English. Maximum 200 characters.';
+        break;
+      case 'dislike':
+        prompt += 'Create a tweet that conveys constructive criticism of current issues. Use polite but firm English. Maximum 200 characters.';
+        break;
+      case 'suggestion':
+        prompt += 'Create a tweet that provides useful tips or advice. Use helpful and practical English. Maximum 200 characters.';
+        break;
+      case 'question':
+        prompt += 'Create a tweet with engaging questions that can spark discussion. Use engaging English. Maximum 200 characters.';
+        break;
+      default:
+        prompt += 'Create an interesting and relevant tweet to share. Use natural English. Maximum 200 characters.';
+>>>>>>> be8621848e5e268a689a06f9820b568e5541bca3
     }
   }
 
@@ -717,6 +768,7 @@ async function handleTestApiConnection(request, sendResponse) {
     let response;
     if (provider === 'openai') {
       response = await callOpenAIAPI(testPrompt, apiKey, model);
+<<<<<<< HEAD
     } else if (provider === 'azure-openai') {
       if (!model || typeof model !== 'object') {
         sendResponse({ 
@@ -732,6 +784,8 @@ async function handleTestApiConnection(request, sendResponse) {
         model.deploymentName, 
         model.apiVersion
       );
+=======
+>>>>>>> be8621848e5e268a689a06f9820b568e5541bca3
     } else if (provider === 'openai-free') {
       response = await callOpenAIFreeAPI(testPrompt, model);
     } else {
@@ -740,8 +794,12 @@ async function handleTestApiConnection(request, sendResponse) {
     
     if (response) {
       let providerName = provider === 'openai' ? 'OpenAI' : 
+<<<<<<< HEAD
                         provider === 'openai-free' ? 'OpenAI Free' :
                         provider === 'azure-openai' ? 'Azure OpenAI' : 'Gemini';
+=======
+                        provider === 'openai-free' ? 'OpenAI Free' : 'Gemini';
+>>>>>>> be8621848e5e268a689a06f9820b568e5541bca3
       sendResponse({ 
         success: true, 
         message: `${providerName} API is working!` 

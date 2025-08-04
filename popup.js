@@ -5,17 +5,26 @@ document.addEventListener('DOMContentLoaded', async () => {
     const apiProviderSelect = document.getElementById('apiProvider');
     const geminiConfig = document.getElementById('geminiConfig');
     const openaiConfig = document.getElementById('openaiConfig');
+<<<<<<< HEAD
     const azureConfig = document.getElementById('azureConfig');
     const openaiFreeConfig = document.getElementById('openaiFreeConfig');
     const geminiApiKeyInput = document.getElementById('geminiApiKey');
     const openaiApiKeyInput = document.getElementById('openaiApiKey');
     const azureApiKeyInput = document.getElementById('azureApiKey');
     // Azure endpoint, deployment, and version are pre-configured
+=======
+    const openaiFreeConfig = document.getElementById('openaiFreeConfig');
+    const geminiApiKeyInput = document.getElementById('geminiApiKey');
+    const openaiApiKeyInput = document.getElementById('openaiApiKey');
+>>>>>>> be8621848e5e268a689a06f9820b568e5541bca3
     const openaiModelSelect = document.getElementById('openaiModel');
     const openaiFreePlatformSelect = document.getElementById('openaiFreePlatform');
     const toggleGeminiVisibilityBtn = document.getElementById('toggleGeminiVisibility');
     const toggleOpenaiVisibilityBtn = document.getElementById('toggleOpenaiVisibility');
+<<<<<<< HEAD
     const toggleAzureVisibilityBtn = document.getElementById('toggleAzureVisibility');
+=======
+>>>>>>> be8621848e5e268a689a06f9820b568e5541bca3
     const saveKeyBtn = document.getElementById('saveKey');
     const testKeyBtn = document.getElementById('testKey');
     const statusIndicator = document.getElementById('statusIndicator');
@@ -28,14 +37,20 @@ document.addEventListener('DOMContentLoaded', async () => {
     apiProviderSelect.addEventListener('change', onProviderChange);
     toggleGeminiVisibilityBtn.addEventListener('click', () => toggleApiKeyVisibility('gemini'));
     toggleOpenaiVisibilityBtn.addEventListener('click', () => toggleApiKeyVisibility('openai'));
+<<<<<<< HEAD
     toggleAzureVisibilityBtn.addEventListener('click', () => toggleApiKeyVisibility('azure'));
+=======
+>>>>>>> be8621848e5e268a689a06f9820b568e5541bca3
     saveKeyBtn.addEventListener('click', saveConfiguration);
     testKeyBtn.addEventListener('click', testCurrentProvider);
 
     // Auto-save on input changes
     geminiApiKeyInput.addEventListener('input', debounce(saveConfiguration, 1000));
     openaiApiKeyInput.addEventListener('input', debounce(saveConfiguration, 1000));
+<<<<<<< HEAD
     azureApiKeyInput.addEventListener('input', debounce(saveConfiguration, 1000));
+=======
+>>>>>>> be8621848e5e268a689a06f9820b568e5541bca3
     openaiModelSelect.addEventListener('change', saveConfiguration);
     openaiFreePlatformSelect.addEventListener('change', saveConfiguration);
 
@@ -56,10 +71,13 @@ document.addEventListener('DOMContentLoaded', async () => {
                 if (config.openaiApiKey) {
                     openaiApiKeyInput.value = config.openaiApiKey;
                 }
+<<<<<<< HEAD
                 if (config.azureApiKey) {
                     azureApiKeyInput.value = config.azureApiKey;
                 }
                 // Azure endpoint, deployment, and version are pre-configured
+=======
+>>>>>>> be8621848e5e268a689a06f9820b568e5541bca3
                 
                 // Set OpenAI model
                 if (config.openaiModel) {
@@ -78,8 +96,12 @@ document.addEventListener('DOMContentLoaded', async () => {
                 await testCurrentProvider(false);
                 
                 let providerName = config.provider === 'openai' ? 'OpenAI' : 
+<<<<<<< HEAD
                                   config.provider === 'openai-free' ? 'OpenAI Free' :
                                   config.provider === 'azure-openai' ? 'Azure OpenAI' : 'Gemini';
+=======
+                                  config.provider === 'openai-free' ? 'OpenAI Free' : 'Gemini';
+>>>>>>> be8621848e5e268a689a06f9820b568e5541bca3
                 updateStatus('success', `${providerName} configured`);
             } else {
                 updateStatus('error', 'No API configuration found');
@@ -105,11 +127,17 @@ document.addEventListener('DOMContentLoaded', async () => {
         // Hide all configs first
         geminiConfig.style.display = 'none';
         openaiConfig.style.display = 'none';
+<<<<<<< HEAD
         azureConfig.style.display = 'none';
         openaiFreeConfig.style.display = 'none';
         geminiConfig.classList.remove('active');
         openaiConfig.classList.remove('active');
         azureConfig.classList.remove('active');
+=======
+        openaiFreeConfig.style.display = 'none';
+        geminiConfig.classList.remove('active');
+        openaiConfig.classList.remove('active');
+>>>>>>> be8621848e5e268a689a06f9820b568e5541bca3
         openaiFreeConfig.classList.remove('active');
         
         // Show the selected provider config
@@ -119,9 +147,12 @@ document.addEventListener('DOMContentLoaded', async () => {
         } else if (provider === 'openai') {
             openaiConfig.style.display = 'block';
             openaiConfig.classList.add('active');
+<<<<<<< HEAD
         } else if (provider === 'azure-openai') {
             azureConfig.style.display = 'block';
             azureConfig.classList.add('active');
+=======
+>>>>>>> be8621848e5e268a689a06f9820b568e5541bca3
         } else if (provider === 'openai-free') {
             openaiFreeConfig.style.display = 'block';
             openaiFreeConfig.classList.add('active');
@@ -138,9 +169,12 @@ document.addEventListener('DOMContentLoaded', async () => {
         } else if (provider === 'openai') {
             input = openaiApiKeyInput;
             button = toggleOpenaiVisibilityBtn;
+<<<<<<< HEAD
         } else if (provider === 'azure') {
             input = azureApiKeyInput;
             button = toggleAzureVisibilityBtn;
+=======
+>>>>>>> be8621848e5e268a689a06f9820b568e5541bca3
         }
         
         const isPassword = input.type === 'password';
@@ -153,11 +187,14 @@ document.addEventListener('DOMContentLoaded', async () => {
         const provider = apiProviderSelect.value;
         const geminiApiKey = geminiApiKeyInput.value.trim();
         const openaiApiKey = openaiApiKeyInput.value.trim();
+<<<<<<< HEAD
         const azureApiKey = azureApiKeyInput.value.trim();
         // Azure configuration is pre-configured
         const azureEndpoint = 'https://okegas.openai.azure.com/';
         const azureDeploymentName = 'gpt-4.1-mini';
         const azureApiVersion = '2024-02-15-preview';
+=======
+>>>>>>> be8621848e5e268a689a06f9820b568e5541bca3
         const openaiModel = openaiModelSelect.value;
         const openaiFreePlatform = openaiFreePlatformSelect.value;
 
@@ -170,10 +207,13 @@ document.addEventListener('DOMContentLoaded', async () => {
             updateStatus('error', 'Please enter OpenAI API key');
             return;
         }
+<<<<<<< HEAD
         if (provider === 'azure-openai' && !azureApiKey) {
             updateStatus('error', 'Please enter Azure OpenAI API key');
             return;
         }
+=======
+>>>>>>> be8621848e5e268a689a06f9820b568e5541bca3
         // OpenAI Free doesn't need API key validation
 
         try {
@@ -186,11 +226,15 @@ document.addEventListener('DOMContentLoaded', async () => {
                 geminiApiKey,
                 openaiApiKey,
                 openaiModel,
+<<<<<<< HEAD
                 openaiFreePlatform,
                 azureApiKey,
                 azureEndpoint,
                 azureDeploymentName,
                 azureApiVersion
+=======
+                openaiFreePlatform
+>>>>>>> be8621848e5e268a689a06f9820b568e5541bca3
             };
 
             const response = await chrome.runtime.sendMessage({
@@ -200,8 +244,12 @@ document.addEventListener('DOMContentLoaded', async () => {
 
             if (response.success) {
                 let providerName = provider === 'openai' ? 'OpenAI' : 
+<<<<<<< HEAD
                                   provider === 'openai-free' ? 'OpenAI Free' :
                                   provider === 'azure-openai' ? 'Azure OpenAI' : 'Gemini';
+=======
+                                  provider === 'openai-free' ? 'OpenAI Free' : 'Gemini';
+>>>>>>> be8621848e5e268a689a06f9820b568e5541bca3
                 updateStatus('success', `${providerName} configuration saved`);
             } else {
                 updateStatus('error', 'Failed to save configuration: ' + response.error);
@@ -234,6 +282,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                 updateStatus('error', 'Please enter OpenAI API key first');
                 return;
             }
+<<<<<<< HEAD
         } else if (provider === 'azure-openai') {
             apiKey = azureApiKeyInput.value.trim();
             
@@ -248,6 +297,8 @@ document.addEventListener('DOMContentLoaded', async () => {
                 deploymentName: 'gpt-4.1-mini',
                 apiVersion: '2024-02-15-preview'
             };
+=======
+>>>>>>> be8621848e5e268a689a06f9820b568e5541bca3
         } else if (provider === 'openai-free') {
             // OpenAI Free doesn't need API key
             apiKey = null;
@@ -264,8 +315,12 @@ document.addEventListener('DOMContentLoaded', async () => {
                 testKeyBtn.classList.add('loading');
                 testKeyBtn.disabled = true;
                 let providerName = provider === 'openai' ? 'OpenAI' : 
+<<<<<<< HEAD
                                   provider === 'openai-free' ? 'OpenAI Free' :
                                   provider === 'azure-openai' ? 'Azure OpenAI' : 'Gemini';
+=======
+                                  provider === 'openai-free' ? 'OpenAI Free' : 'Gemini';
+>>>>>>> be8621848e5e268a689a06f9820b568e5541bca3
                 updateStatus('', `Testing ${providerName} connection...`);
             }
 
@@ -278,16 +333,24 @@ document.addEventListener('DOMContentLoaded', async () => {
 
             if (response.success) {
                 let providerName = provider === 'openai' ? 'OpenAI' : 
+<<<<<<< HEAD
                                   provider === 'openai-free' ? 'OpenAI Free' :
                                   provider === 'azure-openai' ? 'Azure OpenAI' : 'Gemini';
+=======
+                                  provider === 'openai-free' ? 'OpenAI Free' : 'Gemini';
+>>>>>>> be8621848e5e268a689a06f9820b568e5541bca3
                 updateStatus('success', `${providerName} is working! ✅`);
                 if (showUserFeedback) {
                     showNotification(`${providerName} test successful!`, 'success');
                 }
             } else {
                 let providerName = provider === 'openai' ? 'OpenAI' : 
+<<<<<<< HEAD
                                   provider === 'openai-free' ? 'OpenAI Free' :
                                   provider === 'azure-openai' ? 'Azure OpenAI' : 'Gemini';
+=======
+                                  provider === 'openai-free' ? 'OpenAI Free' : 'Gemini';
+>>>>>>> be8621848e5e268a689a06f9820b568e5541bca3
                 updateStatus('error', `${providerName} test failed: ` + response.error);
                 if (showUserFeedback) {
                     showNotification(`${providerName} test failed: ` + response.error, 'error');

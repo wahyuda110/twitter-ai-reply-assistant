@@ -462,6 +462,7 @@ body {
 
 .api-status.error .api-status-indicator {
     background: #dc3545;
+<<<<<<< HEAD
 }
 
 /* Azure OpenAI Ready Notice */
@@ -523,4 +524,6 @@ body {
     font-size: 12px;
     margin: 3px 0;
     opacity: 0.95;
+=======
+>>>>>>> be8621848e5e268a689a06f9820b568e5541bca3
 } 
