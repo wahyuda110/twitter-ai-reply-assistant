@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Generate Extension Icons</title>
+</head>
+<body>
+    <h1>Generate Chrome Extension Icons</h1>
+    <p>Open this file in browser, right-click on each canvas and "Save image as" to get the PNG files.</p>
+    
+    <div>
+        <h3>icon16.png</h3>
+        <canvas id="icon16" width="16" height="16"></canvas>
+    </div>
+    
+    <div>
+        <h3>icon48.png</h3>
+        <canvas id="icon48" width="48" height="48"></canvas>
+    </div>
+    
+    <div>
+        <h3>icon128.png</h3>
+        <canvas id="icon128" width="128" height="128"></canvas>
+    </div>
+
+    <script>
+        function drawIcon(canvas, size) {
+            const ctx = canvas.getContext('2d');
+            
+            // Background circle
+            ctx.fillStyle = '#1da1f2';
+            ctx.beginPath();
+            ctx.arc(size/2, size/2, size/2 - 2, 0, 2 * Math.PI);
+            ctx.fill();
+            
+            // Robot icon
+            const robotSize = size * 0.6;
+            const robotX = (size - robotSize) / 2;
+            const robotY = (size - robotSize) / 2;
+            
+            // Robot head
+            ctx.fillStyle = 'white';
+            ctx.fillRect(robotX, robotY, robotSize, robotSize * 0.8);
+            
+            // Robot eyes
+            ctx.fillStyle = '#1da1f2';
+            const eyeSize = size * 0.08;
+            ctx.beginPath();
+            ctx.arc(robotX + robotSize * 0.3, robotY + robotSize * 0.3, eyeSize, 0, 2 * Math.PI);
+            ctx.fill();
+            
+            ctx.beginPath();
+            ctx.arc(robotX + robotSize * 0.7, robotY + robotSize * 0.3, eyeSize, 0, 2 * Math.PI);
+            ctx.fill();
+            
+            // Robot mouth
+            ctx.fillRect(robotX + robotSize * 0.3, robotY + robotSize * 0.6, robotSize * 0.4, size * 0.05);
+        }
+        
+        // Generate all icons
+        drawIcon(document.getElementById('icon16'), 16);
+        drawIcon(document.getElementById('icon48'), 48);
+        drawIcon(document.getElementById('icon128'), 128);
+    </script>
+</body>
+</html> 

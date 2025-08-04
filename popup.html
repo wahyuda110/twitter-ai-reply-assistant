@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Twitter AI Reply Assistant</title>
+    <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🤖 Twitter AI Assistant</h1>
+            <p class="subtitle">Generate AI-powered replies using multiple AI providers</p>
+        </div>
+
+        <div class="status" id="status">
+            <div class="status-indicator" id="statusIndicator"></div>
+            <span id="statusText">Checking status...</span>
+        </div>
+
+        <div class="section">
+            <h3>🔐 API Configuration</h3>
+            
+            <!-- API Provider Selection -->
+            <div class="input-group">
+                <label for="apiProvider">Choose AI Provider:</label>
+                <select id="apiProvider" class="provider-select">
+                    <option value="gemini">🔷 Google Gemini (Free)</option>
+                    <option value="openai">🤖 OpenAI GPT (Paid)</option>
+                    <option value="azure-openai">☁️ Azure OpenAI (Paid)</option>
+                    <option value="openai-free">🆓 OpenAI ChatGPT (Free)</option>
+                </select>
+            </div>
+
+            <!-- Gemini API Configuration -->
+            <div id="geminiConfig" class="api-config">
+                <div class="input-group">
+                    <label for="geminiApiKey">Gemini API Key:</label>
+                    <input type="password" id="geminiApiKey" placeholder="Enter your Gemini API key">
+                    <button id="toggleGeminiVisibility" class="toggle-btn" title="Show/Hide API Key">👁️</button>
+                </div>
+                <p class="help-text">
+                    Get your free API key from 
+                    <a href="https://makersuite.google.com/app/apikey" target="_blank">Google AI Studio</a>
+                </p>
+            </div>
+
+            <!-- OpenAI API Configuration -->
+            <div id="openaiConfig" class="api-config" style="display: none;">
+                <div class="input-group">
+                    <label for="openaiApiKey">OpenAI API Key:</label>
+                    <input type="password" id="openaiApiKey" placeholder="Enter your OpenAI API key">
+                    <button id="toggleOpenaiVisibility" class="toggle-btn" title="Show/Hide API Key">👁️</button>
+                </div>
+                <div class="input-group">
+                    <label for="openaiModel">OpenAI Model:</label>
+                    <select id="openaiModel" class="model-select">
+                        <option value="gpt-4o-mini">GPT-4o Mini (Recommended)</option>
+                        <option value="gpt-4o">GPT-4o (Premium)</option>
+                        <option value="gpt-3.5-turbo">GPT-3.5 Turbo (Budget)</option>
+                    </select>
+                </div>
+                <p class="help-text">
+                    Get your API key from 
+                    <a href="https://platform.openai.com/api-keys" target="_blank">OpenAI Platform</a>
+                </p>
+            </div>
+
+            <!-- Azure OpenAI API Configuration -->
+            <div id="azureConfig" class="api-config" style="display: none;">
+                <div class="input-group">
+                    <label for="azureApiKey">Azure OpenAI API Key:</label>
+                    <input type="password" id="azureApiKey" placeholder="Enter your Azure OpenAI API key">
+                    <button id="toggleAzureVisibility" class="toggle-btn" title="Show/Hide API Key">👁️</button>
+                </div>
+                <div class="azure-config-info">
+                    <h4>☁️ Configuration</h4>
+                    <p>✅ Endpoint: okegas.openai.azure.com</p>
+                    <p>✅ Model: gpt-4.1-mini</p>
+                    <p>✅ API Version: 2024-02-15-preview</p>
+                </div>
+                <p class="help-text">
+                    Get your Azure OpenAI service from 
+                    <a href="https://portal.azure.com" target="_blank">Azure Portal</a>. 
+                    Find your endpoint and API key in the Azure OpenAI service resource.
+                </p>
+            </div>
+
+                        <!-- OpenAI Free API Configuration -->
+            <div id="openaiFreeConfig" class="api-config" style="display: none;">
+                <div class="free-openai-notice">
+                    <h4>🎉 Free OpenAI ChatGPT!</h4>
+                    <p>Uses free OpenAI-compatible API endpoints. No API key required!</p>
+                </div>
+                <div class="input-group">
+                    <label for="openaiFreePlatform">Free Platform:</label>
+                    <select id="openaiFreePlatform" class="model-select">
+                        <option value="deepseek">DeepSeek API (GPT-4 Level)</option>
+                        <option value="groq">Groq Cloud (Fast Inference)</option>
+                        <option value="together">Together AI (Free Tier)</option>
+                    </select>
+                </div>
+                <div class="rate-limit-notice">
+                    <p class="help-text">
+                        ⚠️ Free services may have rate limits. Performance may vary during peak times.<br>
+                        These services provide ChatGPT-like capabilities at no cost.
+                    </p>
+                </div>
+            </div>
+
+            <div class="button-group">
+                <button id="saveKey" class="btn btn-primary">Save Configuration</button>
+                <button id="testKey" class="btn btn-secondary">Test Connection</button>
+            </div>
+        </div>
+
+
+
+        <div class="section">
+            <h3>📖 How to Use</h3>
+            <ol class="instructions">
+                <li>Choose your preferred AI provider (Gemini or OpenAI)</li>
+                <li>Enter your API key for the selected provider</li>
+                <li>Visit Twitter/X.com</li>
+                <li>Look for the floating bubble with emoji buttons (👍💪👎💡❓)</li>
+                <li>Click any emoji to generate contextual AI replies</li>
+            </ol>
+        </div>
+
+        <div class="footer">
+            <p>Made with ❤️ Kuro</p>
+            <div class="version">v3.0</div>
+        </div>
+    </div>
+
+    <script src="popup.js"></script>
+</body>
+</html> 
